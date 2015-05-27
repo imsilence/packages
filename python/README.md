@@ -4,4 +4,4 @@
 
   唯一id创建库,线程安全,用法:
 
-  `import muuid;print(muuid.getuuid);`
+  `import muuid;print(muuid.getuuid());`
