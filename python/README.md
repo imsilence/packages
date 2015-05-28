@@ -1,6 +1,6 @@
 # Python 工具库 #
 
-+ 2015-05-27 [log](https://github.com/imsilence/packages/blob/master/python/log)
++ 2015-05-28 [log](https://github.com/imsilence/packages/blob/master/python/log)
    python logging模块watcher,监控logging.cfg变化并对logging环境进行重新配置 
 
 + 2015-05-27 [muuid](https://github.com/imsilence/packages/blob/master/python/muuid.py)
