@@ -8,7 +8,7 @@
 
    `from logwatcher import LogWatcher;LogWatcher('logging.cfg').start()`
 
-+ [logging.cfg配置](https://github.com/imsilence/blogs/blob/master/python/python_logging.md)
+   [logging.cfg配置](https://github.com/imsilence/blogs/blob/master/python/python_logging.md)
 
 + 2015-05-27 [muuid](https://github.com/imsilence/packages/blob/master/python/muuid.py)
       
