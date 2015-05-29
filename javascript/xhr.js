@@ -3,13 +3,13 @@
 var _HEADER_TYPES = 'Accept,Accept-Charset,Accept-Encoding,Accept-Language,Connection,Cookie,Host,Referer,User-Agent'.split(',');
 
 function _create_xhr() {
-    var xhr = null;
+    var _xhr = null;
     if(window.XMLHttpRequest) {
-        xhr = new XMLHttpRequest()
+        _xhr = new XMLHttpRequest()
     } else {
-        xhr = new ActiveXObject("Microsoft.XMLHTTP")
+        _xhr = new ActiveXObject("Microsoft.XMLHTTP")
     }
-    return xhr;
+    return _xhr;
 }
 
 function _serialize(params) {
