@@ -1,5 +1,13 @@
 # Python 工具库 #
 
++ 2015-05-28 [log](https://github.com/imsilence/packages/blob/master/python/webserver)
+
+   python wsgi webserver
+
+   后台启动: `python wsgiserver.py test:test`
+
+   浏览器访问: `http://localhost:43001`
+
 + 2015-05-28 [log](https://github.com/imsilence/packages/blob/master/python/log)
 
    python logging模块watcher,监控logging.cfg变化并对logging环境进行重新配置 
