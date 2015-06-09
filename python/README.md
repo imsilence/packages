@@ -1,6 +1,6 @@
 # Python 工具库 #
 
-+ 2015-05-28 [log](https://github.com/imsilence/packages/blob/master/python/webserver)
++ 2015-05-28 [webserver](https://github.com/imsilence/packages/blob/master/python/webserver)
 
    python wsgi webserver
 
