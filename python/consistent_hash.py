@@ -103,8 +103,6 @@ class ConsistentHash(object):
                 _targets.append(_target)
                 _found_count += 1
                 
-            
-        
         return _targets
     
     def _sort_targets(self):
