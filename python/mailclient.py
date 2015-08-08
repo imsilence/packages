@@ -81,11 +81,11 @@ if __name__ == '__main__':
                     datefmt='%Y-%m-%d %H:%M:%S')
     
     import time
-    s = MailClient('smtp.qq.com', 587, '********@qq.com', '*********')
+    s = MailClient('mail.alarm.360.cn', 25, 'shenji@alarm.360.cn', '')
     s.set_keepalive(False)
     s.set_debug(True)
     st = time.time()
     for i in xrange(10):
-        s.send('**********', '测试邮件:%s' % i, '测试邮件:%s' % i)
+        s.send('wuke-c@alarm.360.cn', '我就是一个测试:%s' % i, 'www.360.cn测试邮件')
     print time.time() - st
 
