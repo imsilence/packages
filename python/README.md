@@ -138,7 +138,7 @@
     用法:
 
     ```
-    import muuid
+        import muuid
 
-    print(muuid.getuuid())
+        print(muuid.getuuid())
     ```
