@@ -17,7 +17,8 @@
     后台运行程序
 
     用法：
-    '''
+
+    ```
         import threading
 
         from runserver import Callback, run_as_server
@@ -35,13 +36,14 @@
             
         threading.Thread(target=stop).start()
         run_as_server([Callback(callback=callback1),Callback(callback=callback2)])
-    '''
+    ```
 
 + 2015-08-06 [fmonitor](https://github.com/imsilence/packages/blob/master/python/fmonitor.py)
 
     文件&文件夹监控, 当监控文件&文件夹发生变化后调用回调函数
 
     函数说明:
+
         `file_monitor(path, callback, sleeptime=10, content=True, *args, **kwargs)`
         
         参数:
@@ -74,7 +76,8 @@
 
 
     用法：
-    '''
+
+    ```
         import time
 
         from fmonitor import file_monitor, folder_monitor
@@ -86,14 +89,15 @@
         folder_monitor("d:/folder", callback, 20, False, lambda path:path.endswith('.monitor'), 'folder changed')
         while 1:
             time.sleep(5)
-    '''
+    ```
 
 + 2015-08-05 [consistent_hash](https://github.com/imsilence/packages/blob/master/python/consistent_hash.py)
 
     一致性hash算法
 
     用法：
-    '''
+
+    ```
         import consistent_hash from ConsistentHash
 
         _util = ConsistentHash()
@@ -101,7 +105,7 @@
             _util.add_target('target-%s' % i)
         print _util.lookup_list('a', 2)
         print _util.remove_target('target-0').lookup('a')
-    '''
+    ```
 
    
 + 2015-05-28 [webserver](https://github.com/imsilence/packages/blob/master/python/webserver)
@@ -118,11 +122,12 @@
    
     用法：
 
-    '''
+
+    ```
         from logwatcher import LogWatcher
 
         LogWatcher('logging.cfg').start()
-    '''
+    ```
 
     [logging.cfg配置](https://github.com/imsilence/blogs/blob/master/python/python_logging.md)
 
@@ -132,8 +137,8 @@
       
     用法:
 
-    '''
+    ```
     import muuid
 
     print(muuid.getuuid())
-    '''
+    ```
