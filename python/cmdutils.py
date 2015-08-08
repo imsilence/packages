@@ -57,6 +57,6 @@ if __name__ == '__main__':
                     format='%(asctime)s %(name)s %(levelname)s:%(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
     print exec_cmd(['python', 'test.py'], True, cwd=r"d:\\")
-    print exec_cmd(['ping ', 'www.360.cn', '-n 100'], True, cwd=r"d:\\")
-    print exec_cmd(['ping ', 'www.360.cn'])
+    print exec_cmd(['ping ', 'www.baidu.cn', '-n 100'], True)
+    print exec_cmd(['ping ', 'www.baidu.cn'])
     
