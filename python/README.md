@@ -60,7 +60,7 @@
         def callback(*args, **kwargs):
             print args[0]
 
-        file_monitor("d:/file.txt", callback, 5, False, 'file changed')
+        file_monitor("d:/file.txt", callback, 10, False, 'file changed')
         folder_monitor("d:/folder", callback, 20, False, lambda path:path.endswith('.monitor'), 'folder changed')
         while 1:
             time.sleep(5)
