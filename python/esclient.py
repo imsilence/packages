@@ -27,6 +27,9 @@ class EsClient(object):
     
     def _connect(self):
         return pyes.ES(self._hosts, timeout=self._timeout)
+    
+    def get_connection(self):
+        return self._connection
         
     def has_index(self, index):
         return self._connection.indices.exists_index(index)

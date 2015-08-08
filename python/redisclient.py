@@ -30,6 +30,9 @@ class RedisClient(object):
     def _connect(self):
         return redis.StrictRedis(host=self._host, port=self._port, db=self._db)
     
+    def get_connection(self):
+        return self._connection
+
     def set(self, key, value, expire=None):
         self._connection.set(key, value, expire)
         
