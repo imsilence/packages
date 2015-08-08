@@ -5,6 +5,7 @@ import os
 import threading
 import logging
 import logging.config
+import traceback
 import time
 
 root_logger = logging.getLogger()
@@ -25,8 +26,8 @@ class LogWatcher(threading.Thread):
                     self._modify_time = _mtime
                     logging.config.fileConfig(self._config)
                 except BaseException, e:
-                    import traceback
-                    root_logger.error(traceback.format_exc())
+                    root_logger.exception('error:%s', str(e))
+                    root_logger.exception(traceback.format_exc())
             time.sleep(0.5)
 
 
