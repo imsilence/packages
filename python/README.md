@@ -56,7 +56,7 @@
             path: 监控文件夹
             callback: 回调函数
             sleeptime: 监控周期
-            content: True/False, True表示监测文件内容, False表示监测修改时间
+            content: True/False, True表示监测文件内容, False表示监测文件修改时间
             filter: 用于对文件夹中文件进行过滤，为lambda函数或None, lambda函数回调参数为监控文件夹下的文件绝对路径
             其余参数为callback回调函数的输入参数
 
