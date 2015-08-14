@@ -17,7 +17,7 @@ class EsClient(object):
     def __new__(cls, *args, **kwargs):
         _key = crypt.md5({'args' : args, 'kwargs' : kwargs})
         if _key not in cls._instances:
-            cls._instances[_key] = super(EsClient, cls).__new__(cls, *args, **kwargs)
+            cls._instances[_key] = super(EsClient, cls).__new__(cls)
         return cls._instances[_key]
     
     def __init__(self, hosts, timeout=10):

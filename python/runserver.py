@@ -20,23 +20,30 @@ class Callback(object):
         self.init = kwargs.get('init', NIL)
         self.callback = kwargs.get('callback', NIL)
         self.dispose = kwargs.get('dispose', NIL)
-        self.timesleep = float(kwargs.get('timesleep', 1))
+        self.interval = float(kwargs.get('interval', 1))
+        self.timesleep = float(kwargs.get('timesleep', 0.5))
     
 
 class DaemonThread(threading.Thread):
     
-    def __init__(self, callback, timesleep=1):
+    def __init__(self, callback, interval=1, timesleep=0.5):
         super(DaemonThread, self).__init__()
         self.setName('thread_daemon')
         self.setDaemon(True)
         self._callback = callback
+        self._interval = interval
         self._timesleep = timesleep
         
     def run(self):
         _callback = self._callback
+        _interval = self._interval
+        _next_time = 0
         while 1:
             try:
-                _callback()
+                _current_time = time.time()
+                if _current_time > _next_time:
+                    _next_time = _current_time + _interval
+                    _callback()
             except BaseException:
                 _logger.exception(traceback.format_exc())
             finally:
@@ -55,10 +62,11 @@ def run_as_server(callbacks, timesleep=0.5):
             _init_func = getattr(_callback, 'init')
             _callback_func = getattr(_callback, 'callback')
             _dispose_func = getattr(_callback, 'dispose')
+            _interval = getattr(_callback, 'interval')
             _timesleep = getattr(_callback, 'timesleep')
             
             _init_func()
-            DaemonThread(_callback_func, _timesleep).start()
+            DaemonThread(_callback_func, _interval, _timesleep).start()
             
             _disponse_funcs.append(_dispose_func)
             
@@ -89,4 +97,4 @@ if __name__ == '__main__':
         stop_server()
         
     threading.Thread(target=stop).start()
-    run_as_server([Callback(callback=callback1),Callback(callback=callback2)])
+    run_as_server([Callback(callback=callback1, interval=5),Callback(callback=callback2)])

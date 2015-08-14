@@ -19,14 +19,17 @@ class FileLock(object):
         self._expires = expires
         print self._path
     
-    def acquire(self):
-        if not self.locked():
-            write_file(self._path, time.time())
-            return True
-            
-        return False
+    def acquire(self, wait=True):
+        while 1:
+            if not self.locked():
+                write_file(self._path, time.time())
+                return True
+            elif wait:
+                time.sleep(1)
+            else:
+                return False
     
-    def relese(self):
+    def release(self):
         delete_file(self._path)
     
     def locked(self):

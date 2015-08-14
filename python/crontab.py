@@ -14,7 +14,7 @@ from fmonitor import folder_monitor
 from fileutils import get_all_files
 
 _CUR_PATH = os.path.normpath(os.path.dirname(os.path.abspath(__file__)))
-_INTERVAL_MINUTE = 60
+INTERVAL_CALLBACK = 60
 
 _logger = logging.getLogger('crontab')
 
@@ -27,10 +27,13 @@ def _execute_cmd(cmd, cwd):
     return exec_cmd(cmd, True, cwd=cwd)[0]
 
 def _validate_time_sequence(time_sequence):
+    for _seq in time_sequence:
+        if re.match("^[*]|[\d]{1,2}([,-][\d]{1,2})*$", _seq) is None:
+            return False
     return True
 
 def _read_configs():
-    global _lock, _commands
+    global _commands
 
     _cmds = []
     _paths = get_all_files(_script_path_dir, filter=lambda x:os.path.basename(x)=='crontab')
@@ -81,7 +84,7 @@ def _judge_time(current_time_sequence, _time_sequence):
                         _rt = True
                         break
                 else:
-                    if int(_node[_i]) == int(current_time_sequence[_i]):
+                    if int(_node) == int(current_time_sequence[_i]):
                         _rt = True
                         break
             if not _rt:
@@ -103,23 +106,19 @@ def _judge_execute_commands(current_time, commands):
 
 
 def run():
-    global _next_time, _lock
-    _current_time = time.time()
-    if _current_time >= _next_time:
-        _logger.debug('judge exec commands')
+    _logger.debug('judge exec commands')
 
-        _next_time = _current_time + _INTERVAL_MINUTE
-        _execute_commands = []
-        if _lock.acquire():
-            try:
-                _execute_commands = copy.deepcopy(_commands)
-            finally:
-                _lock.release()
-        
-        _judge_execute_commands(_current_time, _execute_commands)
+    _execute_commands = []
+    if _lock.acquire():
+        try:
+            _execute_commands = copy.deepcopy(_commands)
+        finally:
+            _lock.release()
+    
+    _judge_execute_commands(time.time(), _execute_commands)
         
 
-folder_monitor(_script_path_dir, _read_configs, sleeptime=30, content=True, filter=lambda x:os.path.basename(x)=='crontab')
+folder_monitor(_script_path_dir, _read_configs, sleeptime=10, content=True, filter=lambda x:os.path.basename(x)=='crontab')
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG,
@@ -127,4 +126,4 @@ if __name__ == '__main__':
                         datefmt='%Y-%m-%d %H:%M:%S',
                         )
     from runserver import Callback, run_as_server
-    run_as_server(Callback(callback=run))
+    run_as_server(Callback(callback=run, interval=INTERVAL_CALLBACK))
