@@ -1,5 +1,19 @@
 # Python 工具库 #
 
++ 2015-08-15 [zklock](https://github.com/imsilence/packages/blob/master/python/zklock.py)
+
+    分布式同步锁，使用zookeeper
+
+     用法：
+    ```
+    _lock = ZKlock()
+    if _lock.acquire():
+        try:
+            pass
+        except BaseException:
+            _lock.release()
+    ```
+
 + 2015-08-08 [crontab](https://github.com/imsilence/packages/blob/master/python/crontab.py)
 
     定时执行控制程序, 同unix中crontab
